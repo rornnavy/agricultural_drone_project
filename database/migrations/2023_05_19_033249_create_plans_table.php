@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('plan_name');
-            $table->dateTime('date_time');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->string('task');
+            $table->text('description');
+            
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
