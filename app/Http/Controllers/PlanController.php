@@ -16,7 +16,7 @@ class PlanController extends Controller
     public function index()
     {
         $plan = Plan::all();
-        $plan = PlanResource::collection($plan);
+        $plan = ShowPlanResource::collection($plan);
         return response()->json(['success' => true, 'data' => $plan],201);
     }
 
