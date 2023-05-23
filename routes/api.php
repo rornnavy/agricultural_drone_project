@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DroneController;
+use App\Http\Controllers\FieldController;
 use App\Http\Controllers\UserController;
 use App\Models\Drone;
 use App\Http\Controllers\PlanController;
@@ -33,3 +34,6 @@ Route::resource('/plans', PlanController::class);
 
 //Route Map
 Route::resource('/maps', MapController::class);
+
+//Route Field
+Route::resource("/fields", FieldController::class);
