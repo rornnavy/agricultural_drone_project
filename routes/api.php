@@ -30,11 +30,14 @@ Route::resource("/users", UserController::class);
 //Route Drone
 Route::resource("/drones", DroneController::class);
 
+//Route Plan
+Route::resource('/plans', PlanController::class);
+
+//Route Map
+Route::resource('/maps', MapController::class);
+
 //Route Field
 Route::resource("/fields", FieldController::class);
-
-//Route plans
-Route::resource("/plans", PlanController::class);
 
 //Route locations
 Route::resource("/locations", LocationController::class);

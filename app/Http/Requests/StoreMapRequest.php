@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StorePlanRequest extends FormRequest
+class StoreMapRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,6 @@ class StorePlanRequest extends FormRequest
     {
         return true;
     }
-
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(['success' => false, 'message' => $validator->errors()], 412));
@@ -29,12 +28,10 @@ class StorePlanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'plan_name' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required',
-            'task' => 'required',
-            'description' => 'required',
-            'user_id' => 'required',
+            'name' => 'required',
+            'image' => 'required',
+            'drone_id' => 'required',
+            'fied_id' => 'required',
         ];
     }
 }

@@ -17,8 +17,12 @@ class ShowPlanResource extends JsonResource
         return [
             'id'=>$this->id,
             'plan_name'=>$this->plan_name,
-            'date_time'=>$this->date_time,
+            'start_time'=>$this->start_time,
+            'end_time'=>$this->end_time,
+            'task'=>$this->task,
+            'description'=>$this->description,
             'user_id'=>$this->user,
+            'drones'=>ShowDroneResource::collection($this->drones),
         ];
     }
 }

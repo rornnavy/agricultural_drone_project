@@ -18,6 +18,10 @@ class Drone extends Model
         'spray_density',
         'user_id',
     ];
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class, 'drone_plans')->withTimestamps();
+    }
     public static function store($request, $id = null)
     {
         $drone = $request->only(
@@ -29,6 +33,9 @@ class Drone extends Model
             'user_id',
         );
         $drone = self::updateOrCreate(['id' => $id], $drone);
+
+        $drones = request('plans');
+        $drone->plans()->sync($drones);
 
         return $drone;
     }

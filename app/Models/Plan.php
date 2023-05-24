@@ -11,20 +11,32 @@ class Plan extends Model
     use HasFactory;
     protected $fillable = [
         'plan_name',
-        'date_time',
+        'start_time',
+        'end_time',
+        'task',
+        'description',
         'user_id',
     ];
+    public static function store($request, $id = null)
+    {
+        $plan = $request->only(
+            'plan_name',
+            'start_time',
+            'end_time',
+            'task',
+            'description',
+            'user_id',
+        );
+        $plan = self::updateOrCreate(['id' => $id], $plan);
 
+        return $plan;
+    }
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
-
-    public static function store($request,$id = null)
+    public function drones()
     {
-        //request values
-        $ticket = $request->only([ 'plan_name','date_time','user_id']);
-        $ticket = self::updateOrCreate(['id'=> $id], $ticket);
-        return $ticket;
+        return $this->belongsToMany(Drone::class, 'drone_plans')->withTimestamps();
     }
 }
