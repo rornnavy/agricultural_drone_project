@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
-class StoreFieldRequest extends FormRequest
+class StoreLocationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,9 +18,9 @@ class StoreFieldRequest extends FormRequest
     }
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response()->json(['success' => false, 'message' => $validator->errors()], 412));
+        throw new HttpResponseException(response()->json(
+            ['success' => false, 'message' => $validator->errors()], 412));
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -29,12 +29,12 @@ class StoreFieldRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
+            'name'=> [
                 'required',
-                Rule::unique('fields')->ignore($this->id),
+                Rule::unique('locations')->ignore($this->id),
             ],
-            'description' => 'required',
-            'location_id' => 'required'
+            'longitude'=> 'required',
+            'latitude'=> 'required',
         ];
     }
 }

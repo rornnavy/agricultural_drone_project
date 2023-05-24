@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\FieldController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 use App\Models\Drone;
 use App\Http\Controllers\PlanController;
@@ -33,8 +34,8 @@ Route::resource("/drones", DroneController::class);
 Route::resource("/fields", FieldController::class);
 
 //Route plans
-Route::get('/plans',[PlanController::class,'index']);
-Route::post('/plans',[PlanController::class,'store']);
-Route::get('/plans/{id}',[PlanController::class,'show']);
-Route::put('/plans/{id}',[PlanController::class,'update']);
-Route::delete('/plans/{id}',[PlanController::class,'destroy']);
+Route::resource("/plans", PlanController::class);
+
+//Route locations
+Route::resource("/locations", LocationController::class);
+

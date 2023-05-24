@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Field extends Model
 {
@@ -14,13 +15,20 @@ class Field extends Model
         'description',
         'location_id',
     ];
-
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class, 'location_id', 'id');
+    }
 
     public static function store($request,$id = null)
     {
         //request values
-        $field = $request->only([ 'name','description','location_id']);
-        $field = self::updateOrCreate(['id'=> $id], $field);
+        $fields = $request->only([ 
+            'name',
+            'description',
+            'location_id'
+        ]);
+        $field = self::updateOrCreate(['id'=> $id], $fields);
         return $field;
     }
 
