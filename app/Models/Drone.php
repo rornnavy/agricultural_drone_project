@@ -22,6 +22,10 @@ class Drone extends Model
     {
         return $this->belongsToMany(Plan::class, 'drone_plans')->withTimestamps();
     }
+    public function maps():HasMany
+    {
+        return $this->hasMany(Map::class, 'map_id','id');
+    }
     public static function store($request, $id = null)
     {
         $drone = $request->only(

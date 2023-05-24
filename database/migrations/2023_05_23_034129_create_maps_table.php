@@ -18,6 +18,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('drone_id');
             $table->foreign('drone_id')->references('id')->on('drones')->onDelete('cascade');
+            $table->unsignedBigInteger('field_id');
+            $table->foreign('field_id')->references('id')->on('fields')->onDelete('cascade');
 
 
             $table->timestamps();
