@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreMapRequest extends FormRequest
+class StoreInstructionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class StoreMapRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'image' => 'required',
+            'description' => 'required',
             'drone_id' => 'required',
         ];
     }

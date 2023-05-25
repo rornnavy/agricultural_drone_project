@@ -12,7 +12,6 @@ class Map extends Model
         'name',
         'image',
         'drone_id',
-        'field_id',
     ];
     public static function store($request, $id = null)
     {
@@ -20,7 +19,6 @@ class Map extends Model
             'name',
             'image',
             'drone_id',
-            'field_id',
         );
         $map = self::updateOrCreate(['id' => $id], $map);
 

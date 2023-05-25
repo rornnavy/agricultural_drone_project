@@ -56,7 +56,6 @@ class User extends Authenticatable
         return $user;
     }
     public function drones():HasMany{
-        
         return $this->hasMany(Drone::class);
     }
     public function plans():HasMany{

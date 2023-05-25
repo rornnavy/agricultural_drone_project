@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Drone extends Model
 {
@@ -42,4 +43,8 @@ class Drone extends Model
         
         return $this->belongsTo(User::class);
     }
+    // public function instruction():HasOne
+    // {
+    //     return $this->hasOne(Instruction::class);
+    // }
 }

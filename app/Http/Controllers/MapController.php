@@ -16,7 +16,7 @@ class MapController extends Controller
     {
         $map = Map::all();
         $map = ShowMapResource::collection($map);
-        return response()->json(['success'=>true, 'data'=>$map], 200);
+        return response()->json(['success'=>true, 'data'=> $map], 200);
     }
 
     /**
