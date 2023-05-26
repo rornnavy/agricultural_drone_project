@@ -12,15 +12,21 @@ class Instruction extends Model
     protected $fillable = [
         'name',
         'description',
+        'drone_id',
     ];
     public static function store($request, $id = null)
     {
         $instruction = $request->only(
             'name',
             'description',
+            'drone_id',
         );
         $instruction = self::updateOrCreate(['id' => $id], $instruction);
 
         return $instruction;
+    }
+    public function drone(): BelongsTo
+    {
+        return $this->belongsTo(Drone::class);
     }
 }

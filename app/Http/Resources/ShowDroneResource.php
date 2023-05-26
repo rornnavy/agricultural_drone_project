@@ -25,7 +25,8 @@ class ShowDroneResource extends JsonResource
             'spray_density'=>$this->spray_density,
             'user_id'=>$this->user,
             'location'=>$this->locations,
-            'map'=>$this->maps
+            'map'=>$this->maps,
+            'instruction'=>$this->instructions
             // 'plan'=>ShowPlanResource::collection($this->plans),
         ];
     

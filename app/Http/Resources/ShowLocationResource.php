@@ -19,7 +19,7 @@ class ShowLocationResource extends JsonResource
             'name'=>$this ->name,
             'longitude'=>$this ->longitude,
             'latitude'=>$this ->latitude,
-            'drone_id'=>$this ->drone
+            'drone_id'=>$this ->drone->id,
         ];
     }
 }

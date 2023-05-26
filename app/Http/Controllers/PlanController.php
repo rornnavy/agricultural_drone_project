@@ -56,6 +56,11 @@ class PlanController extends Controller
         $plan = Plan::find($id);
         $plan->delete();
         return response()->json(['success' => true, 'data' =>$plan],200);
-
+    }
+    public function getPlanName(string $name)
+    {
+        $plan = Plan::where('plan_name', $name)->first();
+        $plan = new ShowPlanResource($plan);
+        return response()->json(['success'=>true, 'data'=>$plan], 200);
     }
 }

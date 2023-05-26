@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDroneRequest;
 use App\Http\Resources\ShowDroneResource;
 use App\Models\Drone;
+use App\Models\Instruction;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class DroneController extends Controller
@@ -57,42 +59,34 @@ class DroneController extends Controller
         $drone->delete();
         return response()->json(['success'=>true, 'message'=>'deleted successfully'], 200);
     }
-    // public function getCurrentLocation(string $id)
-    // {
-    //     $drone = Drone::where('drone_id', $id)->first();
-    //     if($drone){
-    //         return response()->json(['success'=>true, 'data'=>$drone->location], 200);
-    //     }else{
-    //         return response()->json(['data'=>'location not found!'], 400);
-    //     }
-    // }
     public function getCurrentLocation(string $id)
     {
         $drone = Drone::where('drone_id', $id)->first();
-        $locations = $drone->locations;
-        $latestLocation = $locations->sortByDesc('created_at')->first();
-        $currentLocation = [
-            'latitude' => $latestLocation->latitude,
-            'longitude' => $latestLocation->longitude,
-        ];
-        return $currentLocation;
+        if ($drone) {
+            $locations = $drone->locations;
+            $latestLocation = $locations->sortByDesc('created_at')->first();
+            $currentLocation = [
+                'latitude' => $latestLocation->latitude,
+                'longitude' => $latestLocation->longitude,
+            ];
+            return response()->json(['success'=>true, 'data'=>$currentLocation], 200);
+        } else {
+            return response()->json(['success'=>false, 'message'=>'location not found'], 401);
+        }
     }
-//     public function scopeLatestLocation(string $id)
-//     {
-//         $drone = Drone::where('drone_id', $id)->first();
 
-// if ($drone) {
-//     $locations = $drone->locations;
-//     $latestLocation = $locations->sortByDesc('created_at')->first();
-//     $currentLocation = [
-//         'latitude' => $latestLocation->latitude,
-//         'longitude' => $latestLocation->longitude,
-//     ];
-//     return $currentLocation;
-// } else {
-//     // Handle the case where the drone does not exist
-//     abort(404, "Drone not found");
-// }
-//     }
-    
+    public function updateInstruction(string $id ,string $instruction)
+    {
+        $drone = Drone::where('drone_id', $id)->first();
+        if($drone){
+            $Instruction = Instruction::where('id', $instruction)->first();
+            if($Instruction){
+                $Instruction->update([
+                    "name"=>request('name'),
+                    "description"=>request('description'),
+                ]);
+            }
+            return response()->json(['success'=>true, 'data'=>$Instruction], 200);
+        }
+    }
 }

@@ -39,4 +39,8 @@ class Plan extends Model
     {
         return $this->belongsToMany(Drone::class, 'drone_plans')->withTimestamps();
     }
+    public function farms()
+    {
+        return $this->belongsToMany(Farm::class, 'farm_plans')->withTimestamps();
+    }
 }

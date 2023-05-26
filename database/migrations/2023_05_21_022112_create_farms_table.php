@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fields', function (Blueprint $table) {
+        Schema::create('farms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description');
-
-            $table->unsignedBigInteger('location_id');
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fields');
+        Schema::dropIfExists('farms');
     }
 };

@@ -13,22 +13,25 @@ class Map extends Model
         'name',
         'image',
         'drone_id',
+        'farm_id',
     ];
 
     public function drone(): BelongsTo
     {
-        return $this->belongsTo(Drone::class, 'drone_id', 'id');
+        return $this->belongsTo(Drone::class);
     }
-    // public function field(): BelongsTo
-    // {
-    //     return $this->belongsTo(Field::class, 'field_id', 'id');
-    // }
+    public function farm(): BelongsTo
+    {
+        return $this->belongsTo(Farm::class);
+    }
+   
     public static function store($request, $id = null)
     {
         $map = $request->only(
             'name',
             'image',
             'drone_id',
+            'farm_id',
         );
         $map = self::updateOrCreate(['id' => $id], $map);
 
