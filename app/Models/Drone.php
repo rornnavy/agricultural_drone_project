@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Drone extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'drone_id',
         'type',
         'battery',
         'date_time',
@@ -18,13 +20,11 @@ class Drone extends Model
         'spray_density',
         'user_id',
     ];
-    public function plans()
-    {
-        return $this->belongsToMany(Plan::class, 'drone_plans')->withTimestamps();
-    }
+    
     public static function store($request, $id = null)
     {
         $drone = $request->only(
+            'drone_id',
             'type',
             'battery',
             'date_time',
@@ -43,8 +43,17 @@ class Drone extends Model
         
         return $this->belongsTo(User::class);
     }
-    // public function instruction():HasOne
-    // {
-    //     return $this->hasOne(Instruction::class);
-    // }
+    public function locations():HasMany{
+        
+        return $this->hasMany(Location::class);
+    }
+    public function maps():HasMany
+    {
+        return $this->hasMany(Map::class);
+    }
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class, 'drone_plans')->withTimestamps();
+    }
+    
 }

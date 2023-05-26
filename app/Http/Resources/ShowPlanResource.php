@@ -21,8 +21,9 @@ class ShowPlanResource extends JsonResource
             'end_time'=>$this->end_time,
             'task'=>$this->task,
             'description'=>$this->description,
-            'user_id'=>$this->user,
-            'drones'=>ShowDroneResource::collection($this->drones),
+            // 'create_by_user_id'=>$this->user->id,
+            // 'field'=>$this->field,
+            // 'drones'=>ShowDroneResource::collection($this->drones),
         ];
     }
 }

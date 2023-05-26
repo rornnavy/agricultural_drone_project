@@ -3,6 +3,7 @@
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\InstructionController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\UserController;
 use App\Models\Drone;
@@ -30,6 +31,7 @@ Route::resource("/users", UserController::class);
 
 //Route Drone
 Route::resource("/drones", DroneController::class);
+Route::get("drones/{drone_id}/{location}", [DroneController::class, "getCurrentLocation"]);
 
 //Route Plan
 Route::resource('/plans', PlanController::class);
@@ -42,3 +44,9 @@ Route::resource("/fields", FieldController::class);
 
 //Route Instruction
 Route::resource("/instructions", InstructionController::class);
+
+//Route locations
+Route::resource("/locations", LocationController::class);
+
+
+

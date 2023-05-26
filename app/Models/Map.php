@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Map extends Model
 {
@@ -13,6 +14,15 @@ class Map extends Model
         'image',
         'drone_id',
     ];
+
+    public function drone(): BelongsTo
+    {
+        return $this->belongsTo(Drone::class, 'drone_id', 'id');
+    }
+    // public function field(): BelongsTo
+    // {
+    //     return $this->belongsTo(Field::class, 'field_id', 'id');
+    // }
     public static function store($request, $id = null)
     {
         $map = $request->only(

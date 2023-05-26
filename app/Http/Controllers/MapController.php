@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMapRequest;
+use App\Http\Resources\ShowMapImageResource;
 use App\Http\Resources\ShowMapResource;
 use App\Models\Map;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class MapController extends Controller
     public function index()
     {
         $map = Map::all();
-        $map = ShowMapResource::collection($map);
+        $map = ShowMapImageResource::collection($map);
         return response()->json(['success'=>true, 'data'=> $map], 200);
     }
 
@@ -34,7 +35,7 @@ class MapController extends Controller
     public function show(string $id)
     {
         $map = Map::find($id);
-        $map = new ShowMapResource($map);
+        $map = new ShowMapImageResource($map);
         return response()->json(['success'=>true, 'data'=>$map], 200);
     }
 

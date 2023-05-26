@@ -29,12 +29,13 @@ class StoreDroneRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => [
+            'drone_id' => [
                 'required',
                 'min:3',
                 'max:10',
                 Rule::unique('drones')->ignore($this->id),
             ],
+            'type' => 'required',
             'battery' => 'required',
             'date_time' => 'required',
             'area' => 'required',

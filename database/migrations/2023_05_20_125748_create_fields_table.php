@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('location_id');
 
-            // $table->unsignedBigInteger('location_id');
-            // $table->foreign('location_id')->references('id')->on('location')->onDelete('cascade');
+            $table->unsignedBigInteger('location_id');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
 
             $table->timestamps();
         });
