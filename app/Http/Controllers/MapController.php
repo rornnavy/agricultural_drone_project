@@ -66,6 +66,7 @@ class MapController extends Controller
         $map->delete();
         return response()->json(['success'=>true, 'message'=>'deleted successfully'], 200);
     }
+    
     public function getImageOfFarm(string $name, string $farm_id)
     {
         $map = Map::where('name', $name)->first();
@@ -88,8 +89,10 @@ class MapController extends Controller
                 $map->update([
                     "image"=>request('image')
                 ]);
-                return response()->json(['success' => true, 'data' =>$map], 401);
             }
+            return response()->json(['success' => true, 'data' =>$map], 200);
+        }else{
+            return response()->json(['success' => false, 'data' =>"update image is not success"], 401);
         }
     }
     public function deleteImageOfFarm(string $name, string $farm_id)

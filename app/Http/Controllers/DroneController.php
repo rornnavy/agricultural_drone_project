@@ -87,6 +87,8 @@ class DroneController extends Controller
                 ]);
             }
             return response()->json(['success'=>true, 'data'=>$Instruction], 200);
+        }else{
+            return response()->json(['success'=>false, 'data'=>"update is not success"], 200);
         }
     }
 }

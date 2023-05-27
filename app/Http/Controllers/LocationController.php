@@ -55,6 +55,5 @@ class LocationController extends Controller
         $location = Location::find($id);
         $location->delete();
         return response()->json(['success' => true, 'data' =>$location],200);
-
     }
 }
